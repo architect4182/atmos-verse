@@ -14,18 +14,18 @@ export function Watchlist() {
         className="max-w-[1800px] mx-auto space-y-12"
       >
         <div>
-          <h1 className="text-5xl md:text-7xl tracking-tight font-bold text-white mb-4">
+          <h1 className="text-5xl md:text-7xl tracking-tight font-bold text-foreground mb-4">
             Watchlist
           </h1>
-          <p className="text-xl text-white/70">
+          <p className="text-xl text-muted-foreground">
             {items.length} items in your curated collection
           </p>
         </div>
 
         {items.length === 0 ? (
           <div className="py-24 text-center">
-            <p className="text-2xl text-white/40">Your watchlist is empty.</p>
-            <p className="text-white/30 mt-2">Discover movies and shows to add them here.</p>
+            <p className="text-2xl text-muted-foreground">Your watchlist is empty.</p>
+            <p className="text-muted-foreground mt-2">Discover movies and shows to add them here.</p>
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">

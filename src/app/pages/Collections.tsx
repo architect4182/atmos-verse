@@ -5,10 +5,10 @@ export function Collections() {
   return (
     <div className="min-h-screen pt-32 pb-24 bg-[#030712]">
       <div className="max-w-[1800px] mx-auto px-6 md:px-12 mb-12">
-        <h1 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
+        <h1 className="text-4xl md:text-5xl font-black text-foreground mb-4 tracking-tight">
           Curated Collections
         </h1>
-        <p className="text-white/60 text-lg max-w-2xl">
+        <p className="text-muted-foreground text-lg max-w-2xl">
           Dive into hand-picked selections of the finest cinema, grouped by franchise, style, and thematic resonance.
         </p>
       </div>

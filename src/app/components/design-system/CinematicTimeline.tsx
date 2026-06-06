@@ -27,7 +27,7 @@ export function CinematicTimeline({ phases, className }: CinematicTimelineProps)
   return (
     <div className={cn("relative mx-auto max-w-[1200px] px-6 md:px-12 py-24", className)}>
       {/* The Central Glowing Line */}
-      <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-white/10" />
+      <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-border" />
       <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 bg-blue-500/50 blur-[4px]" />
 
       <div className="space-y-32">
@@ -45,7 +45,7 @@ export function CinematicTimeline({ phases, className }: CinematicTimelineProps)
                 {phase.title}
               </h2>
               {phase.description && (
-                <p className="mt-4 max-w-2xl text-lg text-white/60">
+                <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
                   {phase.description}
                 </p>
               )}
@@ -70,7 +70,7 @@ export function CinematicTimeline({ phases, className }: CinematicTimelineProps)
                     )}
                   >
                     {/* Node on the central line */}
-                    <div className="absolute left-0 md:left-1/2 top-8 md:top-1/2 h-4 w-4 -translate-x-1/2 md:-translate-y-1/2 rounded-full border-4 border-blue-500 bg-[#030712] shadow-[0_0_15px_rgba(59,130,246,0.8)] z-20" />
+                    <div className="absolute left-0 md:left-1/2 top-8 md:top-1/2 h-4 w-4 -translate-x-1/2 md:-translate-y-1/2 rounded-full border-4 border-blue-500 bg-background shadow-[0_0_15px_rgba(59,130,246,0.8)] z-20" />
 
                     {/* Poster Side */}
                     <div className={cn(
@@ -93,7 +93,7 @@ export function CinematicTimeline({ phases, className }: CinematicTimelineProps)
                       "w-full md:w-1/2 ml-12 md:ml-0",
                       isLeft ? "md:pl-8 text-left" : "md:pr-8 md:text-right"
                     )}>
-                      <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                      <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
                         {item.title}
                       </h3>
                       {item.year && (
@@ -102,7 +102,7 @@ export function CinematicTimeline({ phases, className }: CinematicTimelineProps)
                         </p>
                       )}
                       {item.description && (
-                        <p className="text-white/60 leading-relaxed max-w-md">
+                        <p className="text-muted-foreground leading-relaxed max-w-md">
                           {item.description}
                         </p>
                       )}

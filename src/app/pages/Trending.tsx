@@ -9,10 +9,10 @@ export function Trending() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="max-w-6xl space-y-6"
       >
-        <h1 className="text-5xl md:text-7xl tracking-tight text-white">
+        <h1 className="text-5xl md:text-7xl tracking-tight text-foreground">
           Trending
         </h1>
-        <p className="text-xl text-white/70">
+        <p className="text-xl text-muted-foreground">
           What's hot right now
         </p>
       </motion.div>

@@ -32,7 +32,7 @@ export function NotFound() {
               <Sparkles className="size-10 text-purple-500 transition-transform duration-300 group-hover:scale-110" />
               <div className="absolute inset-0 blur-xl bg-purple-500/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <span className="text-4xl font-bold tracking-tight text-white">
+            <span className="text-4xl font-bold tracking-tight text-foreground">
               Atmos<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">Verse</span>
             </span>
           </Link>
@@ -41,11 +41,11 @@ export function NotFound() {
             404
           </h1>
           
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
             Lost in the Multiverse?
           </h2>
           
-          <p className="text-lg md:text-xl text-white/60 max-w-lg mb-10 leading-relaxed">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-lg mb-10 leading-relaxed">
             The page you're looking for has been erased from this timeline. Let's get you back to familiar territory.
           </p>
 

@@ -40,32 +40,32 @@ export function Login() {
               <Sparkles className="size-8 text-blue-500 transition-transform duration-300 group-hover:scale-110" />
               <div className="absolute inset-0 blur-xl bg-blue-500/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <span className="text-3xl font-bold tracking-tight text-white">
+            <span className="text-3xl font-bold tracking-tight text-foreground">
               Atmos<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Verse</span>
             </span>
           </Link>
 
           <div className="mb-8">
-            <h1 className="text-3xl font-black text-white mb-2 tracking-tight">Sign In</h1>
-            <p className="text-white/60">Unlock curated worlds, personalized recommendations, and your ultimate watchlist.</p>
+            <h1 className="text-3xl font-black text-foreground mb-2 tracking-tight">Sign In</h1>
+            <p className="text-muted-foreground">Unlock curated worlds, personalized recommendations, and your ultimate watchlist.</p>
           </div>
 
           {/* Form */}
           <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-white/80 ml-1">Email</label>
+              <label className="text-sm font-medium text-secondary-foreground ml-1">Email</label>
               <input 
                 type="email" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all backdrop-blur-md"
+                className="w-full bg-secondary border border-border rounded-xl px-4 py-3.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all backdrop-blur-md"
               />
             </div>
 
             <div className="space-y-1.5">
               <div className="flex justify-between items-center ml-1">
-                <label className="text-sm font-medium text-white/80">Password</label>
+                <label className="text-sm font-medium text-secondary-foreground">Password</label>
                 <a href="#" className="text-xs text-blue-400 hover:text-blue-300 transition-colors">Forgot password?</a>
               </div>
               <input 
@@ -73,7 +73,7 @@ export function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all backdrop-blur-md"
+                className="w-full bg-secondary border border-border rounded-xl px-4 py-3.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all backdrop-blur-md"
               />
             </div>
 
@@ -88,27 +88,27 @@ export function Login() {
 
           {/* Divider */}
           <div className="flex items-center gap-4 my-8">
-            <div className="h-px bg-white/10 flex-1" />
-            <span className="text-xs font-medium text-white/40 uppercase tracking-wider">Or continue with</span>
-            <div className="h-px bg-white/10 flex-1" />
+            <div className="h-px bg-muted flex-1" />
+            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Or continue with</span>
+            <div className="h-px bg-muted flex-1" />
           </div>
 
           {/* Social Auth */}
           <div className="grid grid-cols-2 gap-4">
-            <button className="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-4 py-3 transition-colors text-white/90 font-medium">
+            <button className="flex items-center justify-center gap-2 bg-secondary hover:bg-muted border border-border rounded-xl px-4 py-3 transition-colors text-foreground/90 font-medium">
               <Github className="size-5" />
               Github
             </button>
-            <button className="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-4 py-3 transition-colors text-white/90 font-medium">
+            <button className="flex items-center justify-center gap-2 bg-secondary hover:bg-muted border border-border rounded-xl px-4 py-3 transition-colors text-foreground/90 font-medium">
               <Mail className="size-5" />
               Google
             </button>
           </div>
 
           {/* Footer */}
-          <p className="mt-8 text-center text-sm text-white/50">
+          <p className="mt-8 text-center text-sm text-muted-foreground">
             New to AtmosVerse?{' '}
-            <Link to="/login" className="text-white hover:text-blue-400 font-medium transition-colors">
+            <Link to="/login" className="text-foreground hover:text-blue-400 font-medium transition-colors">
               Sign up now
             </Link>
           </p>

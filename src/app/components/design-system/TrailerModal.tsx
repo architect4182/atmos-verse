@@ -31,7 +31,7 @@ export function TrailerModal({ open, onOpenChange, title, youtubeId = "e1k1PC0Tt
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full max-w-6xl aspect-video bg-black rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] border border-white/10 m-4 md:m-12"
+            className="relative w-full max-w-6xl aspect-video bg-black sm:rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] border-y border-white/10 sm:border sm:border-white/10 m-0 sm:m-4 md:m-12"
           >
             {/* Close Button */}
             <button

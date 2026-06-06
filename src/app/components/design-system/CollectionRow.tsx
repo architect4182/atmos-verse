@@ -33,14 +33,14 @@ export function CollectionRow({ title, viewAllLink, children, className }: Colle
       <div className="mx-auto max-w-[1800px] px-6 md:px-12">
         {/* Section Header */}
         <div className="mb-6 flex items-end justify-between">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white flex items-center gap-2">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground flex items-center gap-2">
             {title}
             <div className="h-2 w-2 rounded-full bg-blue-500" />
           </h2>
           {viewAllLink && (
             <Link 
               to={viewAllLink}
-              className="group flex items-center gap-1 text-sm font-medium text-white/60 hover:text-white transition-colors"
+              className="group flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               View All
               <ChevronRight className="size-4 transition-transform group-hover:translate-x-1" />

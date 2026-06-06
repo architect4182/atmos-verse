@@ -91,7 +91,7 @@ export function Universe() {
 
         {/* Complete Collection Grid */}
         <div className="max-w-[1800px] mx-auto px-6 md:px-12 pt-8 border-t border-white/5">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-6 flex items-center gap-2">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground mb-6 flex items-center gap-2">
             Complete Collection
             <div className="h-2 w-2 rounded-full bg-blue-500" />
           </h2>

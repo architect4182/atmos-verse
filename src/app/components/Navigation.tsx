@@ -1,6 +1,16 @@
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { Search, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
+import { useState, useEffect } from "react";
+import {
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "./ui/command";
+import { REAL_DATA } from "../data/realData";
 
 export function Navigation() {
   const location = useLocation();
@@ -20,6 +30,28 @@ export function Navigation() {
       return location.pathname === "/";
     }
     return location.pathname.startsWith(path);
+  };
+
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setOpen((open) => !open);
+      }
+    };
+
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, []);
+
+  const allContent = Object.values(REAL_DATA).flat();
+
+  const handleSelect = (id: string) => {
+    setOpen(false);
+    navigate(`/content/${id}`);
   };
 
   return (
@@ -73,7 +105,10 @@ export function Navigation() {
             </div>
 
             {/* Search */}
-            <button className="group flex items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.05] px-4 py-2 transition-all duration-300 hover:bg-white/[0.08] hover:border-white/[0.12]">
+            <button 
+              onClick={() => setOpen(true)}
+              className="group flex items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.05] px-4 py-2 transition-all duration-300 hover:bg-white/[0.08] hover:border-white/[0.12]"
+            >
               <Search className="size-5 text-white/70 group-hover:text-white transition-colors" />
               <span className="hidden md:inline text-white/70 group-hover:text-white transition-colors">
                 Search
@@ -82,6 +117,28 @@ export function Navigation() {
                 ⌘K
               </kbd>
             </button>
+            <CommandDialog open={open} onOpenChange={setOpen}>
+              <CommandInput placeholder="Search movies, TV shows, anime..." />
+              <CommandList>
+                <CommandEmpty>No results found.</CommandEmpty>
+                <CommandGroup heading="Results">
+                  {allContent.map((item) => (
+                    <CommandItem
+                      key={item.id}
+                      value={`${item.title} ${item.genres?.join(" ") || ""} ${item.year || ""}`}
+                      onSelect={() => handleSelect(item.id)}
+                      className="cursor-pointer flex items-center gap-3 py-2"
+                    >
+                      <img src={item.image} alt={item.title} className="w-10 h-14 object-cover rounded-md shadow-sm" />
+                      <div className="flex flex-col">
+                        <span className="font-medium text-white">{item.title}</span>
+                        <span className="text-xs text-white/50">{item.metadata || `${item.year || ""} • ${item.type || ""}`}</span>
+                      </div>
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </CommandList>
+            </CommandDialog>
           </div>
         </div>
       </div>

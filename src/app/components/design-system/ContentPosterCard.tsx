@@ -165,7 +165,7 @@ export function ContentPosterCard({
             animate={{ opacity: 1, scale: 1.15 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] z-[100] flex flex-col overflow-hidden rounded-xl bg-[#141414] shadow-2xl shadow-black ring-1 ring-white/10 origin-center cursor-pointer"
+            className="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] z-[100] flex-col overflow-hidden rounded-xl bg-[#141414] shadow-2xl shadow-black ring-1 ring-white/10 origin-center cursor-pointer"
             onClick={handleClick}
           >
             {/* Top Image (Backdrop) - Fixed 140px */}

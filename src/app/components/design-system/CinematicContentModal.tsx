@@ -70,7 +70,7 @@ export function CinematicContentModal({ open, onOpenChange, data }: CinematicCon
   return (
     <AnimatePresence>
       {open && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 md:p-6 overflow-hidden md:py-12">
+        <div className="fixed inset-0 z-[100] flex items-end md:items-center justify-center p-0 md:p-6 overflow-hidden md:py-12">
           {/* Backdrop Blur Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -87,7 +87,7 @@ export function CinematicContentModal({ open, onOpenChange, data }: CinematicCon
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 40 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full max-w-[1200px] h-full md:h-auto md:max-h-[90vh] bg-[#0a0a0a] md:rounded-2xl overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] shadow-[0_0_50px_rgba(0,0,0,0.8)] border-x-0 md:border md:border-white/10 flex flex-col"
+            className="relative w-full max-w-[1200px] h-[92vh] md:h-auto md:max-h-[90vh] bg-[#0a0a0a] rounded-t-3xl md:rounded-2xl overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] shadow-[0_0_50px_rgba(0,0,0,0.8)] border-x-0 border-t md:border border-white/10 flex flex-col pb-[env(safe-area-inset-bottom)]"
           >
             {/* Close Button */}
             <button
