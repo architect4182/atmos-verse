@@ -1,0 +1,28 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+/* Custom utility classes */
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .glass-surface {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+  }
+  
+  .text-gradient {
+    background: linear-gradient(to right, #3B82F6, #8B5CF6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
