@@ -1,21 +1,71 @@
-import { motion } from "motion/react";
+import { 
+  HeroComponent, 
+  DiscoveryCard, 
+  ContentPosterCard, 
+  CollectionRow,
+  StreamingServices
+} from "../components/design-system";
+import { getRandomPoster, getRandomHero } from "../data/mockData";
 
 export function Explore() {
+  const GENRES = ["Action", "Sci-Fi", "Romance", "Horror", "Comedy", "Drama", "Thriller", "Documentary"];
+  const MOODS = ["Mind Bending", "Late Night", "Feel Good", "Adrenaline", "Cozy", "Nostalgic"];
+
   return (
-    <div className="min-h-screen pt-32 px-6 md:px-12 lg:px-16 pb-24">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="max-w-6xl space-y-6"
-      >
-        <h1 className="text-5xl md:text-7xl tracking-tight text-white">
-          Explore
-        </h1>
-        <p className="text-xl text-white/70">
-          Discover curated collections and hidden gems
-        </p>
-      </motion.div>
+    <div className="min-h-screen bg-[#030712] pb-24">
+      {/* 1. Hero Component - Mood Variant */}
+      <HeroComponent 
+        variant="mood"
+        title="Mind Bending"
+        description="Explore stories that will challenge your perception of reality. Dive into complex narratives, unexpected twists, and cerebral masterpieces."
+        image={getRandomHero()}
+        metadata={["Curated Collection", "24 Titles"]}
+      />
+
+      <div className="space-y-4">
+        {/* 2. Collection Row - Genres */}
+        <CollectionRow title="Explore by Genre">
+          {GENRES.map((genre, i) => (
+            <div key={i} className="snap-start min-w-[240px] md:min-w-[320px]">
+              <DiscoveryCard 
+                title={genre}
+                image={getRandomPoster()}
+                badge="Genre"
+              />
+            </div>
+          ))}
+        </CollectionRow>
+
+        {/* 3. Collection Row - Moods */}
+        <CollectionRow title="What's your mood?">
+          {MOODS.map((mood, i) => (
+            <div key={i} className="snap-start min-w-[240px] md:min-w-[320px]">
+              <DiscoveryCard 
+                title={mood}
+                image={getRandomPoster()}
+                badge="Mood"
+              />
+            </div>
+          ))}
+        </CollectionRow>
+
+        {/* 4. Collection Row - Hidden Gems */}
+        <CollectionRow title="Hidden Gems">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <div key={i} className="snap-start min-w-[160px] md:min-w-[200px]">
+              <ContentPosterCard 
+                title={`Underrated Masterpiece ${i + 1}`}
+                image={getRandomPoster()}
+                metadata="Critically Acclaimed"
+                rating={(Math.random() * 1.5 + 8.0).toFixed(1)}
+              />
+            </div>
+          ))}
+        </CollectionRow>
+
+        {/* 5. Streaming Services */}
+        <StreamingServices />
+      </div>
     </div>
   );
 }

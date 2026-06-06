@@ -6,6 +6,7 @@ import { TVShows } from "./pages/TVShows";
 import { Anime } from "./pages/Anime";
 import { Trending } from "./pages/Trending";
 import { Watchlist } from "./pages/Watchlist";
+import { Universe } from "./pages/Universe";
 import { Layout } from "./components/Layout";
 
 export const router = createBrowserRouter([
@@ -20,6 +21,7 @@ export const router = createBrowserRouter([
       { path: "anime", Component: Anime },
       { path: "trending", Component: Trending },
       { path: "watchlist", Component: Watchlist },
+      { path: "universe/:id", Component: Universe },
     ],
   },
 ]);
