@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { cn } from "@/app/components/ui/utils";
-import { useCinematicModal } from "../../context/CinematicModalContext";
+import { useNavigate } from "react-router";
 
 export interface DiscoveryCardProps {
   title: string;
@@ -21,23 +21,16 @@ export function DiscoveryCard({
   className,
   navigateUrl
 }: DiscoveryCardProps) {
-  const modal = useCinematicModal();
+  const navigate = useNavigate();
 
   const handleClick = () => {
     if (onClick) {
-      onClick(); // Still calling onClick if it exists so we don't break existing specific navigations
-      // Wait, the user specifically asked for modal instead of navigation. 
-      // If we want modal instead of navigation, we should trigger the modal here.
-      // But if onClick is provided (e.g., from Home.tsx that explicitly wants to navigate to /universe/:id), we might still want to respect that... 
-      // Actually, the prompt says "When a card is clicked: Open a cinematic modal instead of navigating immediately."
-      // Let's pass navigateUrl into the modal, so it can be used for the "Explore" button inside the modal!
+      onClick();
+      return;
     }
-    modal.openModal({
-      title,
-      image,
-      description: subtitle,
-      navigateUrl
-    });
+    if (navigateUrl) {
+      navigate(navigateUrl);
+    }
   };
 
   return (

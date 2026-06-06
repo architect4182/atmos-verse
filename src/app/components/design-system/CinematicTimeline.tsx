@@ -81,6 +81,7 @@ export function CinematicTimeline({ phases, className }: CinematicTimelineProps)
                         <ContentPosterCard 
                           title={item.title}
                           image={item.image}
+                backdrop={item.backdrop}
                           rating={item.rating}
                           metadata={item.metadata}
                         />

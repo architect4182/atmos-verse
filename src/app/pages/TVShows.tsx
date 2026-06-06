@@ -1,72 +1,36 @@
-import { 
-  HeroComponent, 
-  ContentPosterCard, 
-  CollectionRow, 
-  RankingCarousel 
-} from "../components/design-system";
-import { getRandomPoster, getRandomHero } from "../data/mockData";
+import { HeroComponent, ContentPosterCard, CollectionRow } from "../components/design-system";
+import { REAL_DATA } from "../data/realData";
+import { useTrailerModal } from "../context/TrailerModalContext";
 
 export function TVShows() {
+  const trailer = useTrailerModal();
+  const activeHero = REAL_DATA.tvShows[0]; // Breaking Bad
+
   return (
     <div className="min-h-screen bg-[#030712] pb-24">
-      {/* 1. Hero Component - TV Show Variant */}
       <HeroComponent 
-        variant="content"
-        title="Succession"
-        description="The Roy family is known for controlling the biggest media and entertainment company in the world. However, their world changes when their father steps down from the company."
-        image={getRandomHero()}
-        metadata={["2018-2023", "TV-MA", "4 Seasons", "Drama"]}
+        variant="universe"
+        title="Premium Television"
+        description="Binge-worthy shows that redefine storytelling. Dive into epic sagas and gripping character studies."
+        image={activeHero.backdrop || activeHero.image}
       />
 
-      <div className="space-y-4">
-        {/* 2. Ranking Carousel - Top TV Shows */}
-        <RankingCarousel 
-          title="Top 10 TV Shows Today"
-          items={Array.from({ length: 10 }).map((_, i) => ({
-            id: i,
-            rank: i + 1,
-            title: `Hit Series ${i + 1}`,
-            image: getRandomPoster()
-          }))}
-        />
-
-        {/* 3. Collection Row - Airing Today */}
-        <CollectionRow title="Airing Today" viewAllLink="/tv/airing-today">
-          {Array.from({ length: 10 }).map((_, i) => (
-            <div key={i} className="snap-start min-w-[160px] md:min-w-[200px]">
+      <div className="space-y-8 py-12">
+        <CollectionRow title="Critically Acclaimed Series">
+          {REAL_DATA.tvShows.map((item, i) => (
+            <div key={i} className="snap-start w-[160px] min-w-[160px] md:w-[200px] md:min-w-[200px] shrink-0">
               <ContentPosterCard 
-                title={`New Episode ${i + 1}`}
-                image={getRandomPoster()}
-                metadata="S2 E4 • 8:00 PM"
-                rating={(Math.random() * 2 + 7).toFixed(1)}
+                {...item}
               />
             </div>
           ))}
         </CollectionRow>
 
-        {/* 4. Collection Row - Binge-Worthy */}
-        <CollectionRow title="Binge-Worthy Series">
-          {Array.from({ length: 10 }).map((_, i) => (
-            <div key={i} className="snap-start min-w-[160px] md:min-w-[200px]">
+        <CollectionRow title="Global Phenomenons (K-Dramas)">
+          {REAL_DATA.koreanDramas.map((item, i) => (
+            <div key={i} className="snap-start w-[160px] min-w-[160px] md:w-[200px] md:min-w-[200px] shrink-0">
               <ContentPosterCard 
-                title={`Addictive Show ${i + 1}`}
-                image={getRandomPoster()}
-                metadata="Completed • 5 Seasons"
-                rating={(Math.random() * 1 + 8.5).toFixed(1)}
-              />
-            </div>
-          ))}
-        </CollectionRow>
-
-        {/* 5. Collection Row - Limited Series */}
-        <CollectionRow title="Limited Series">
-          {Array.from({ length: 10 }).map((_, i) => (
-            <div key={i} className="snap-start min-w-[160px] md:min-w-[200px]">
-              <ContentPosterCard 
-                title={`Miniseries ${i + 1}`}
-                image={getRandomPoster()}
-                metadata="Limited Series • Drama"
-                rating={(Math.random() * 1 + 8.0).toFixed(1)}
+                {...item}
               />
             </div>
           ))}

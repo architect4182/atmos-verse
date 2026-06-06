@@ -4,11 +4,18 @@ import { CinematicContentModal } from "@/app/components/design-system/CinematicC
 export interface ModalContentData {
   title: string;
   image: string;
+  backdrop?: string;
   metadata?: string;
   rating?: string;
   description?: string;
-  type?: "content" | "mood" | "universe" | "genre";
+  genres?: string[];
+  universe?: { title: string; route: string };
+  mood?: { title: string; route: string };
+  type?: "content" | "mood" | "universe" | "genre" | "movie" | "tv" | "anime";
   navigateUrl?: string; // Where the user goes if they click "Explore"
+  runtime?: number;
+  number_of_seasons?: number;
+  number_of_episodes?: number;
 }
 
 interface CinematicModalContextType {

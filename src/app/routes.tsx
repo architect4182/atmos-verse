@@ -9,9 +9,16 @@ import { Watchlist } from "./pages/Watchlist";
 import { Universe } from "./pages/Universe";
 import { ContentDetail } from "./pages/ContentDetail";
 import { Mood } from "./pages/Mood";
+import { Collections } from "./pages/Collections";
+import { Login } from "./pages/Login";
+import { NotFound } from "./pages/NotFound";
 import { Layout } from "./components/Layout";
 
 export const router = createBrowserRouter([
+  {
+    path: "/login",
+    Component: Login,
+  },
   {
     path: "/",
     Component: Layout,
@@ -23,9 +30,11 @@ export const router = createBrowserRouter([
       { path: "anime", Component: Anime },
       { path: "trending", Component: Trending },
       { path: "watchlist", Component: Watchlist },
+      { path: "collections", Component: Collections },
       { path: "universe/:id", Component: Universe },
       { path: "content/:id", Component: ContentDetail },
       { path: "mood/:id", Component: Mood },
+      { path: "*", Component: NotFound },
     ],
   },
 ]);

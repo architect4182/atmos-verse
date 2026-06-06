@@ -100,31 +100,37 @@ export function HeroComponent({
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-4 pt-4">
-              <Button 
-                onClick={onPlay}
-                size="lg" 
-                className="bg-white text-black hover:bg-white/90 hover:scale-105 transition-all duration-300 font-bold px-8 h-14 rounded-xl text-lg group"
-              >
-                <Play className="mr-2 size-5 fill-current group-hover:scale-110 transition-transform" />
-                Play Now
-              </Button>
-              <Button 
-                onClick={onInfo}
-                size="lg" 
-                variant="secondary" 
-                className="bg-white/10 text-white hover:bg-white/20 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 font-semibold px-8 h-14 rounded-xl text-lg group"
-              >
-                <Info className="mr-2 size-5 group-hover:scale-110 transition-transform" />
-                More Info
-              </Button>
-              <Button 
-                onClick={onWatchlist}
-                size="icon" 
-                variant="secondary" 
-                className="bg-white/10 text-white hover:bg-white/20 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 size-14 rounded-xl group"
-              >
-                <Plus className="size-6 group-hover:rotate-90 transition-transform duration-300" />
-              </Button>
+              {onPlay && (
+                <Button 
+                  onClick={onPlay}
+                  size="lg" 
+                  className="bg-white text-black hover:bg-white/90 hover:scale-105 transition-all duration-300 font-bold px-8 h-14 rounded-xl text-lg group"
+                >
+                  <Play className="mr-2 size-5 fill-current group-hover:scale-110 transition-transform" />
+                  Play Now
+                </Button>
+              )}
+              {onInfo && (
+                <Button 
+                  onClick={onInfo}
+                  size="lg" 
+                  variant="secondary" 
+                  className="bg-white/10 text-white hover:bg-white/20 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 font-semibold px-8 h-14 rounded-xl text-lg group"
+                >
+                  <Info className="mr-2 size-5 group-hover:scale-110 transition-transform" />
+                  More Info
+                </Button>
+              )}
+              {onWatchlist && (
+                <Button 
+                  onClick={onWatchlist}
+                  size="icon" 
+                  variant="secondary" 
+                  className="bg-white/10 text-white hover:bg-white/20 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 size-14 rounded-xl group"
+                >
+                  <Plus className="size-6 group-hover:rotate-90 transition-transform duration-300" />
+                </Button>
+              )}
             </div>
           </motion.div>
         </div>

@@ -5,21 +5,33 @@ import {
   CollectionRow,
   StreamingServices
 } from "../components/design-system";
-import { getRandomPoster, getRandomHero } from "../data/mockData";
+import { REAL_DATA } from "../data/realData";
 import { useNavigate } from "react-router";
 
 export function Explore() {
   const navigate = useNavigate();
+
+  const allMovies = [
+    ...REAL_DATA.marvel,
+    ...REAL_DATA.dc,
+    ...REAL_DATA.koreanDramas,
+    ...REAL_DATA.anime,
+    ...REAL_DATA.fastandfurious,
+    ...REAL_DATA.harrypotter,
+    ...REAL_DATA.missionimpossible,
+    ...REAL_DATA.jurassic,
+    ...REAL_DATA.prabhas
+  ].sort(() => Math.random() - 0.5);
 
   return (
     <div className="min-h-screen bg-[#030712] pb-24">
       {/* 1. Hero Component - Mood Variant */}
       <HeroComponent 
         variant="mood"
-        title="Mind Bending"
-        description="Explore stories that will challenge your perception of reality. Dive into complex narratives, unexpected twists, and cerebral masterpieces."
-        image={getRandomHero()}
-        metadata={["Curated Collection", "24 Titles"]}
+        title="Explore AtmosVerse"
+        description="Discover your next favorite story. Browse by genre, mood, or uncover hidden gems across our curated collections."
+        image={REAL_DATA.anime[3]?.backdrop || REAL_DATA.anime[3]?.image}
+        metadata={["Curated Collection", "Endless Discovery"]}
       />
 
       <div className="space-y-4">
@@ -29,7 +41,7 @@ export function Explore() {
             <div key={i} className="snap-start min-w-[240px] md:min-w-[320px]">
               <DiscoveryCard 
                 title={genre}
-                image={getRandomPoster()}
+                image={allMovies[i]?.image || allMovies[i+10]?.image}
                 badge="Genre"
                 navigateUrl={`/explore?genre=${genre.toLowerCase()}`}
               />
@@ -43,7 +55,7 @@ export function Explore() {
             <div key={i} className="snap-start min-w-[240px] md:min-w-[320px]">
               <DiscoveryCard 
                 title={mood}
-                image={getRandomPoster()}
+                image={allMovies[i+5]?.image || allMovies[i+15]?.image}
                 badge="Mood"
                 navigateUrl={`/mood/${mood.toLowerCase().replace(/\s+/g, '-')}`}
               />
@@ -53,14 +65,10 @@ export function Explore() {
 
         {/* 4. Collection Row - Hidden Gems */}
         <CollectionRow title="Hidden Gems">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <div key={i} className="snap-start min-w-[160px] md:min-w-[200px]">
+          {allMovies.slice(0, 12).map((item, i) => (
+            <div key={i} className="snap-start w-[160px] min-w-[160px] md:w-[200px] md:min-w-[200px] shrink-0">
               <ContentPosterCard 
-                title={`Underrated Masterpiece ${i + 1}`}
-                image={getRandomPoster()}
-                metadata="Critically Acclaimed"
-                rating={(Math.random() * 1.5 + 8.0).toFixed(1)}
-                navigateUrl={`/content/underrated-masterpiece-${i + 1}`}
+                {...item}
               />
             </div>
           ))}

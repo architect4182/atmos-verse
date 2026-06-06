@@ -7,6 +7,16 @@ export interface RankingItem {
   title: string;
   image: string;
   rank: number;
+  backdrop?: string;
+  metadata?: string | string[];
+  rating?: string;
+  description?: string;
+  genres?: string[];
+  type?: 'movie' | 'tv' | 'anime' | 'content' | 'mood' | 'universe' | 'genre';
+  runtime?: number;
+  number_of_seasons?: number;
+  number_of_episodes?: number;
+  navigateUrl?: string;
 }
 
 export interface RankingCarouselProps {

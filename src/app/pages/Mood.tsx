@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import { HeroComponent, CollectionRow, ContentPosterCard } from "../components/design-system";
-import { getRandomHero, getRandomPoster } from "../data/mockData";
+import { REAL_DATA } from "../data/realData";
 
 export function Mood() {
   const { id } = useParams<{ id: string }>();
@@ -10,12 +10,23 @@ export function Mood() {
 
   // Dynamic descriptions based on mood
   let description = "Explore movies and shows curated for your current emotional state.";
+  let heroImage = REAL_DATA.tvShows[0]?.backdrop || REAL_DATA.tvShows[0]?.image;
+  let essentialList = [...REAL_DATA.marvel, ...REAL_DATA.dc].sort(() => Math.random() - 0.5);
+  let hiddenGems = [...REAL_DATA.koreanDramas, ...REAL_DATA.anime].sort(() => Math.random() - 0.5);
+  let recentReleases = [...REAL_DATA.fastandfurious, ...REAL_DATA.missionimpossible].sort(() => Math.random() - 0.5);
+
   if (moodName.toLowerCase() === "mind bending") {
     description = "Prepare to question reality. These narratives feature complex twists, psychological thrills, and thought-provoking concepts that will linger long after the credits roll.";
-  } else if (moodName.toLowerCase() === "late night") {
-    description = "Perfect for when the lights go down. A mix of moody thrillers, dark comedies, and atmospheric dramas that set the perfect midnight tone.";
-  } else if (moodName.toLowerCase() === "romance") {
-    description = "Sweeping love stories, tragic heartbreak, and modern meet-cutes. Get ready to feel everything.";
+    heroImage = REAL_DATA.anime[3]?.backdrop || REAL_DATA.anime[3]?.image; // Steins;Gate
+    essentialList = [...REAL_DATA.anime, ...REAL_DATA.missionimpossible].sort(() => Math.random() - 0.5);
+  } else if (moodName.toLowerCase() === "emotional") {
+    description = "Sweeping love stories, tragic heartbreak, and profound human connections. Have some tissues ready.";
+    heroImage = REAL_DATA.koreanDramas[2]?.backdrop || REAL_DATA.koreanDramas[2]?.image; // Crash Landing On You
+    essentialList = [...REAL_DATA.koreanDramas, ...REAL_DATA.harrypotter].sort(() => Math.random() - 0.5);
+  } else if (moodName.toLowerCase() === "epic journeys") {
+    description = "Grand adventures, expansive worlds, and heroic quests. Embark on tales that span across space, time, and imagination.";
+    heroImage = REAL_DATA.marvel[21]?.backdrop || REAL_DATA.marvel[21]?.image; // Endgame
+    essentialList = [...REAL_DATA.marvel, ...REAL_DATA.dc, ...REAL_DATA.harrypotter].sort(() => Math.random() - 0.5);
   }
 
   return (
@@ -25,46 +36,37 @@ export function Mood() {
         variant="mood"
         title={moodName}
         description={description}
-        image={getRandomHero()}
+        image={heroImage}
         metadata={["Curated Mood Collection", "Over 50 Titles"]}
       />
 
       <div className="space-y-4 pt-12">
         {/* Curated Collection Rows */}
         <CollectionRow title={`Essential ${moodName} Watches`}>
-          {Array.from({ length: 12 }).map((_, i) => (
-            <div key={i} className="snap-start min-w-[160px] md:min-w-[200px]">
+          {essentialList.slice(0, 12).map((item, i) => (
+            <div key={`${item.id}-essential-${i}`} className="snap-start w-[160px] min-w-[160px] md:w-[200px] md:min-w-[200px] shrink-0">
               <ContentPosterCard 
-                title={`${moodName} Masterpiece ${i + 1}`}
-                image={getRandomPoster()}
-                metadata="Highly Recommended"
-                rating={(Math.random() * 1.5 + 8.0).toFixed(1)}
+                {...item}
               />
             </div>
           ))}
         </CollectionRow>
 
         <CollectionRow title="Hidden Gems">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <div key={i} className="snap-start min-w-[160px] md:min-w-[200px]">
+          {hiddenGems.slice(0, 12).map((item, i) => (
+            <div key={`${item.id}-hidden-${i}`} className="snap-start w-[160px] min-w-[160px] md:w-[200px] md:min-w-[200px] shrink-0">
               <ContentPosterCard 
-                title={`Underrated Gem ${i + 1}`}
-                image={getRandomPoster()}
-                metadata="Cult Classic"
-                rating={(Math.random() * 1.5 + 7.5).toFixed(1)}
+                {...item}
               />
             </div>
           ))}
         </CollectionRow>
 
-        <CollectionRow title="Recent Releases">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <div key={i} className="snap-start min-w-[160px] md:min-w-[200px]">
+        <CollectionRow title="Curator's Picks">
+          {recentReleases.slice(0, 12).map((item, i) => (
+            <div key={`${item.id}-recent-${i}`} className="snap-start w-[160px] min-w-[160px] md:w-[200px] md:min-w-[200px] shrink-0">
               <ContentPosterCard 
-                title={`New Release ${i + 1}`}
-                image={getRandomPoster()}
-                metadata="2024"
-                rating={(Math.random() * 2 + 6.0).toFixed(1)}
+                {...item}
               />
             </div>
           ))}

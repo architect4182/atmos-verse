@@ -26,3 +26,25 @@
     -webkit-text-fill-color: transparent;
   }
 }
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* IE/Old Edge */
+body {
+  -ms-overflow-style: none;
+}
+
+/* Ensure Scrolling Still Works */
+html,
+body {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
