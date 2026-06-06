@@ -4,14 +4,17 @@ import {
   ContentPosterCard, 
   CollectionRow, 
   RankingCarousel,
-  StreamingServices
+  StreamingServices,
+  TrailerModal
 } from "../components/design-system";
 import { getRandomPoster, getRandomHero, UNIVERSE_BGS } from "../data/mockData";
 
 import { useNavigate } from "react-router";
+import { useState } from "react";
 
 export function Home() {
   const navigate = useNavigate();
+  const [isTrailerOpen, setIsTrailerOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#030712] pb-24">
@@ -21,6 +24,14 @@ export function Home() {
         description="Paul Atreides unites with Chani and the Fremen while on a warpath of revenge against the conspirators who destroyed his family."
         image={getRandomHero()}
         metadata={["2024", "PG-13", "2h 46m", "Sci-Fi"]}
+        onPlay={() => setIsTrailerOpen(true)}
+      />
+
+      <TrailerModal 
+        open={isTrailerOpen} 
+        onOpenChange={setIsTrailerOpen} 
+        title="Dune: Part Two"
+        youtubeId="U2Qp5pL3ovA" 
       />
 
       <div className="space-y-4">
@@ -44,6 +55,7 @@ export function Home() {
                 image={getRandomPoster()}
                 metadata="2023 • Action"
                 rating={(Math.random() * 2 + 7).toFixed(1)}
+                navigateUrl={`/content/recently-watched-${i + 1}`}
               />
             </div>
           ))}
@@ -60,7 +72,7 @@ export function Home() {
                   subtitle="Explore the complete timeline and collections."
                   image={bgImage}
                   badge="Universe"
-                  onClick={() => navigate(`/universe/${key}`)}
+                  navigateUrl={`/universe/${key}`}
                 />
               </div>
             );
@@ -69,14 +81,18 @@ export function Home() {
 
         {/* 5. Collection Row (Discovery Cards for Moods) */}
         <CollectionRow title="Explore by Mood">
-          {["Mind Bending", "Late Night", "Romantic", "Adrenaline", "Feel Good"].map((mood, i) => (
-            <div key={i} className="snap-start min-w-[240px] md:min-w-[320px]">
-              <DiscoveryCard 
-                title={mood}
-                image={getRandomPoster()}
-              />
-            </div>
-          ))}
+          {["Mind Bending", "Late Night", "Romantic", "Adrenaline", "Feel Good"].map((mood, i) => {
+            const moodId = mood.toLowerCase().replace(/\s+/g, '-');
+            return (
+              <div key={i} className="snap-start min-w-[240px] md:min-w-[320px]">
+                <DiscoveryCard 
+                  title={mood}
+                  image={getRandomPoster()}
+                  navigateUrl={`/mood/${moodId}`}
+                />
+              </div>
+            );
+          })}
         </CollectionRow>
 
         {/* 6. Streaming Services */}

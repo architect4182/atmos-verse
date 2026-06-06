@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Link, useLocation } from "react-router";
 import { Search, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
 import { cn } from "@/app/components/ui/utils";
+import { GlobalSearch } from "./GlobalSearch";
 
 interface FloatingNavbarProps {
   className?: string;
@@ -9,7 +11,8 @@ interface FloatingNavbarProps {
 
 export function FloatingNavbar({ className }: FloatingNavbarProps) {
   const location = useLocation();
-  
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
   const navItems = [
     { path: "/", label: "Home" },
     { path: "/explore", label: "Explore" },
@@ -34,7 +37,7 @@ export function FloatingNavbar({ className }: FloatingNavbarProps) {
       className={cn("fixed top-0 left-0 right-0 z-50 px-6 pt-6 md:px-12 md:pt-8", className)}
     >
       <div className="mx-auto max-w-[1800px]">
-        <div 
+        <div
           className="relative rounded-2xl border border-white/[0.08] bg-black/20 px-6 py-4 shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-2xl"
         >
           {/* Logo */}
@@ -57,11 +60,10 @@ export function FloatingNavbar({ className }: FloatingNavbarProps) {
                   to={item.path}
                   className="relative px-4 py-2 rounded-lg transition-colors duration-200"
                 >
-                  <span className={`relative z-10 transition-colors duration-200 font-medium ${
-                    isActive(item.path) 
-                      ? "text-white" 
+                  <span className={`relative z-10 transition-colors duration-200 font-medium ${isActive(item.path)
+                      ? "text-white"
                       : "text-white/60 hover:text-white"
-                  }`}>
+                    }`}>
                     {item.label}
                   </span>
                   {isActive(item.path) && (

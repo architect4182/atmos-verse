@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { cn } from "@/app/components/ui/utils";
+import { useCinematicModal } from "../../context/CinematicModalContext";
 
 export interface DiscoveryCardProps {
   title: string;
@@ -8,6 +9,7 @@ export interface DiscoveryCardProps {
   badge?: string;
   onClick?: () => void;
   className?: string;
+  navigateUrl?: string;
 }
 
 export function DiscoveryCard({
@@ -17,19 +19,39 @@ export function DiscoveryCard({
   badge,
   onClick,
   className,
+  navigateUrl
 }: DiscoveryCardProps) {
+  const modal = useCinematicModal();
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick(); // Still calling onClick if it exists so we don't break existing specific navigations
+      // Wait, the user specifically asked for modal instead of navigation. 
+      // If we want modal instead of navigation, we should trigger the modal here.
+      // But if onClick is provided (e.g., from Home.tsx that explicitly wants to navigate to /universe/:id), we might still want to respect that... 
+      // Actually, the prompt says "When a card is clicked: Open a cinematic modal instead of navigating immediately."
+      // Let's pass navigateUrl into the modal, so it can be used for the "Explore" button inside the modal!
+    }
+    modal.openModal({
+      title,
+      image,
+      description: subtitle,
+      navigateUrl
+    });
+  };
+
   return (
     <motion.div
-      onClick={onClick}
+      onClick={handleClick}
       whileHover="hover"
       initial="initial"
       className={cn(
-        "group relative overflow-hidden rounded-2xl cursor-pointer isolate aspect-video md:aspect-[4/3]",
+        "group relative overflow-hidden rounded-2xl cursor-pointer isolate aspect-video md:aspect-[4/3] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(59,130,246,0.3)]",
         className
       )}
     >
       {/* Background Image Container */}
-      <div className="absolute inset-0 overflow-hidden rounded-2xl">
+      <div className="absolute inset-0 overflow-hidden rounded-2xl bg-[#111]">
         <motion.img
           variants={{
             initial: { scale: 1 },
@@ -38,7 +60,7 @@ export function DiscoveryCard({
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           src={image}
           alt={title}
-          className="h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-80"
+          className="h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-50"
         />
       </div>
 
@@ -56,35 +78,21 @@ export function DiscoveryCard({
       )}
 
       {/* Content */}
-      <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-        <motion.div
-          variants={{
-            initial: { y: 10, opacity: 0.9 },
-            hover: { y: 0, opacity: 1 },
-          }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          className="space-y-1"
-        >
+      <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+        <div className="space-y-1">
           <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white drop-shadow-lg">
             {title}
           </h3>
           {subtitle && (
-            <motion.p
-              variants={{
-                initial: { opacity: 0, height: 0, y: 10 },
-                hover: { opacity: 1, height: "auto", y: 0 },
-              }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="text-sm md:text-base text-white/70 line-clamp-2"
-            >
+            <p className="text-sm md:text-base text-white/70 line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
               {subtitle}
-            </motion.p>
+            </p>
           )}
-        </motion.div>
+        </div>
       </div>
       
       {/* Premium Border Glow */}
-      <div className="absolute inset-0 rounded-2xl border border-white/10 group-hover:border-white/30 transition-colors duration-500 pointer-events-none" />
+      <div className="absolute inset-0 rounded-2xl border border-transparent group-hover:border-white/30 transition-colors duration-500 pointer-events-none" />
     </motion.div>
   );
 }

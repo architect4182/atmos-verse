@@ -6,3 +6,5 @@ export * from "./CollectionRow";
 export * from "./RankingCarousel";
 export * from "./StreamingServices";
 export * from "./CinematicTimeline";
+export * from "./GlobalSearch";
+export * from "./TrailerModal";

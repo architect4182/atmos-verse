@@ -6,10 +6,10 @@ import {
   StreamingServices
 } from "../components/design-system";
 import { getRandomPoster, getRandomHero } from "../data/mockData";
+import { useNavigate } from "react-router";
 
 export function Explore() {
-  const GENRES = ["Action", "Sci-Fi", "Romance", "Horror", "Comedy", "Drama", "Thriller", "Documentary"];
-  const MOODS = ["Mind Bending", "Late Night", "Feel Good", "Adrenaline", "Cozy", "Nostalgic"];
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-[#030712] pb-24">
@@ -25,12 +25,13 @@ export function Explore() {
       <div className="space-y-4">
         {/* 2. Collection Row - Genres */}
         <CollectionRow title="Explore by Genre">
-          {GENRES.map((genre, i) => (
+          {["Action", "Sci-Fi", "Romance", "Horror", "Comedy", "Drama", "Thriller", "Documentary"].map((genre, i) => (
             <div key={i} className="snap-start min-w-[240px] md:min-w-[320px]">
               <DiscoveryCard 
                 title={genre}
                 image={getRandomPoster()}
                 badge="Genre"
+                navigateUrl={`/explore?genre=${genre.toLowerCase()}`}
               />
             </div>
           ))}
@@ -38,12 +39,13 @@ export function Explore() {
 
         {/* 3. Collection Row - Moods */}
         <CollectionRow title="What's your mood?">
-          {MOODS.map((mood, i) => (
+          {["Mind Bending", "Late Night", "Feel Good", "Adrenaline", "Cozy", "Nostalgic"].map((mood, i) => (
             <div key={i} className="snap-start min-w-[240px] md:min-w-[320px]">
               <DiscoveryCard 
                 title={mood}
                 image={getRandomPoster()}
                 badge="Mood"
+                navigateUrl={`/mood/${mood.toLowerCase().replace(/\s+/g, '-')}`}
               />
             </div>
           ))}
@@ -58,6 +60,7 @@ export function Explore() {
                 image={getRandomPoster()}
                 metadata="Critically Acclaimed"
                 rating={(Math.random() * 1.5 + 8.0).toFixed(1)}
+                navigateUrl={`/content/underrated-masterpiece-${i + 1}`}
               />
             </div>
           ))}
