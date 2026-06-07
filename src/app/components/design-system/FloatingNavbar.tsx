@@ -89,7 +89,7 @@ export function FloatingNavbar({ className }: FloatingNavbarProps) {
           {/* Logo */}
           <div className="relative flex items-center justify-between">
             <Link to="/" className="flex items-center gap-2 group">
-              <span className="text-xl md:text-2xl font-bold tracking-tight text-foreground">
+              <span className="text-xl md:text-2xl font-bold tracking-tight text-white">
                 Atmos<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">Verse</span>
               </span>
             </Link>
@@ -103,8 +103,8 @@ export function FloatingNavbar({ className }: FloatingNavbarProps) {
                   className="relative px-4 py-2 rounded-lg transition-colors duration-200"
                 >
                   <span className={`relative z-10 transition-colors duration-200 font-medium ${isActive(item.path)
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-white"
+                    : "text-white/60 hover:text-white"
                     }`}>
                     {item.label}
                   </span>

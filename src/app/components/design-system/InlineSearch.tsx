@@ -54,7 +54,7 @@ export function InlineSearch() {
   return (
     <div className="relative" ref={containerRef}>
       <div className="group flex items-center gap-3 rounded-xl border border-border bg-background/50 px-4 py-2 transition-all duration-300 hover:shadow-sm focus-within:ring-2 focus-within:ring-blue-500/50">
-        <Search className="size-5 text-muted-foreground" />
+        <Search className="size-5 text-white/60" />
         <input
           type="text"
           placeholder="Search..."
@@ -64,9 +64,9 @@ export function InlineSearch() {
             setIsOpen(true);
           }}
           onFocus={() => setIsOpen(true)}
-          className="w-[60px] sm:w-[120px] lg:w-[200px] bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground font-medium transition-all"
+          className="w-[60px] sm:w-[120px] lg:w-[200px] bg-transparent border-none outline-none text-white placeholder:text-white/60 font-medium transition-all"
         />
-        <kbd className="hidden xl:inline-flex items-center gap-1 rounded border border-border bg-black/5 dark:bg-white/5 px-2 py-0.5 text-xs text-muted-foreground">
+        <kbd className="hidden xl:inline-flex items-center gap-1 rounded border border-border bg-black/5 dark:bg-white/5 px-2 py-0.5 text-xs text-white/60">
           ⌘K
         </kbd>
       </div>
